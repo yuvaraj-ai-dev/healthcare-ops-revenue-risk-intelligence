@@ -1,0 +1,29 @@
+# Core Data Science
+pandas
+numpy
+scikit-learn
+matplotlib
+seaborn
+statsmodels
+openpyxl
+
+# Database Integration
+pymysql
+sqlalchemy
+cryptography
+python-dotenv
+
+# Machine Learning & Explainability
+shap
+xgboost
+lightgbm
+
+# APIs & Web Services
+fastapi
+uvicorn
+pydantic
+
+# Documentation & File Processing
+notebook
+pypdf
+python-docx

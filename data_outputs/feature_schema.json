@@ -1,0 +1,101 @@
+{
+  "features": [
+    {
+      "name": "age",
+      "type": "numeric",
+      "description": "Age of the patient (clinical risk factor)"
+    },
+    {
+      "name": "gender",
+      "type": "categorical",
+      "description": "Demographic gender identifier"
+    },
+    {
+      "name": "city",
+      "type": "categorical",
+      "description": "Geographic city location of the patient"
+    },
+    {
+      "name": "chronic_flag",
+      "type": "binary",
+      "description": "Indicator if patient has chronic condition"
+    },
+    {
+      "name": "length_of_stay_hours",
+      "type": "numeric",
+      "description": "Duration of stay in hours"
+    },
+    {
+      "name": "department",
+      "type": "categorical",
+      "description": "Clinical department treated in"
+    },
+    {
+      "name": "visit_type",
+      "type": "categorical",
+      "description": "Visit type (OPD, ER, ICU)"
+    },
+    {
+      "name": "days_since_registration",
+      "type": "numeric",
+      "description": "Days between registration and encounter date"
+    },
+    {
+      "name": "visit_month",
+      "type": "numeric",
+      "description": "Month of the visit (seasonal operational patterns)"
+    },
+    {
+      "name": "visit_day_of_week",
+      "type": "numeric",
+      "description": "Day of week of the visit (weekday workload patterns)"
+    },
+    {
+      "name": "visit_frequency",
+      "type": "numeric",
+      "description": "Total visits by patient (historical volume risk)"
+    },
+    {
+      "name": "avg_length_of_stay_patient",
+      "type": "numeric",
+      "description": "Average length of stay for the patient (clinical complexity)"
+    },
+    {
+      "name": "provider_rejection_rate",
+      "type": "numeric",
+      "description": "Leakage-controlled historical rejection rate of insurance provider"
+    },
+    {
+      "name": "revenue_realization_rate_dept",
+      "type": "numeric",
+      "description": "Leakage-controlled department-level revenue realization ratio"
+    }
+  ],
+  "targets": [
+    {
+      "name": "risk_score",
+      "type": "categorical",
+      "description": "Clinical and operational risk score (Low, Medium, High)"
+    },
+    {
+      "name": "claim_status",
+      "type": "categorical",
+      "description": "Financial claim outcome (Paid, Pending, Rejected)"
+    }
+  ],
+  "metadata": [
+    {
+      "name": "visit_id",
+      "type": "key"
+    },
+    {
+      "name": "patient_id",
+      "type": "key"
+    },
+    {
+      "name": "split",
+      "type": "metadata",
+      "description": "train or test marker"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+MetricType,Feature,Method,Statistic,PValue,PSI,DriftDetected,DriftStatus
+Feature_Numeric,age,Kolmogorov-Smirnov,0.2126,0.0,0.2393,1,Drift Detected
+Feature_Numeric,length_of_stay_hours,Kolmogorov-Smirnov,0.0143,0.383088,0.0021,0,Stable
+Feature_Numeric,billed_amount,Kolmogorov-Smirnov,0.1196,0.0,0.0767,1,Drift Detected
+Feature_Numeric,days_since_registration,Kolmogorov-Smirnov,0.4924,0.0,1.2906,1,Drift Detected
+Feature_Categorical,department,Population Stability Index,0.0019,,0.0019,0,Stable
+Feature_Categorical,visit_type,Population Stability Index,0.0,,0.0,0,Stable
+Feature_Categorical,insurance_provider,Population Stability Index,0.0014,,0.0014,0,Stable
+Feature_Categorical,risk_score,Population Stability Index,0.0001,,0.0001,0,Stable
+Feature_Categorical,claim_status,Population Stability Index,0.0005,,0.0005,0,Stable

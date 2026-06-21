@@ -1,0 +1,32 @@
+# Virtual Environment
+.venv/
+env/
+venv/
+ENV/
+
+# Python Cache & Compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Local Database Files
+audit_logs.db
+
+# Environment Variables / Credentials
+.env
+.env.docker
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# IDE files
+.vscode/
+.idea/
+
+# Office Temporary Files
+~$*
+
+# Reference Documents & Scratch Scripts
+reference_docs/
+scratch/
