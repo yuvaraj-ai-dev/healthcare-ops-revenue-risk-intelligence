@@ -336,46 +336,49 @@ Model operations in healthcare are subject to stringent regulations. The platfor
 
 ---
 
-## 9. Executive Reporting & Stakeholder Presentation
+## 9. Executive Dashboard & Stakeholder Presentation
 
-A key capstone deliverable is the executive report, designed to convey findings to non-technical leaders and academic reviewers:
+For stakeholder presentations and Capstone grading reviews, the platform contains:
 
-### The Executive Report (`Healthcare_Insights_Report.docx`)
-*   **Overview:** A professional Word Document that summarizes key data findings, SQL analytics highlights, model metrics, ROI calculations, and operational recommendations.
-*   **ROI Highlights:** Details the claim rejection prevention savings of **INR 2.18 Crore** and suggests a triage workflow to prevent ER/ICU congestion based on Model A forecasts.
-*   **Compiling the Report:** If you wish to regenerate or modify the report, execute:
-    ```powershell
-    python build_word_report.py
-    ```
+1. **[Interactive Visual Dashboard](file:///d:/Projects/IITM/Capstone%20Project/app/static/index.html):** 
+   Served directly at the API root path (`http://127.0.0.1:8000/`) when running the FastAPI server. It visualizes data science insights for executives:
+   - **Executive Business Story Banner**: Visual slide-like cards showcasing claims rejection rates, billed leakage, and high-risk encounters.
+   - **Performance & Diagnostics Grid**: Displays dynamic Chart.js breakdowns by department and lists model parameters (RF/LightGBM settings).
+   - **Live Tester Tab**: Forms to test `/predict/risk` and `/predict/claim` with visual progress bar confidence displays.
+   - **Audit Logs Tab**: Direct view of the SQLite database logs.
+   
+2. **[Executive Word Report](Healthcare_Insights_Report.docx):** 
+   A formal document compiling operational and financial recommendations. Compile by running:
+   ```powershell
+   python build_word_report.py
+   ```
+
+3. **[Governance Guidelines](docs/Governance_Compliance.md)** & **[Model Card](docs/Model_Card.md):** 
+   Standardized logs of fairness checks and algorithm specifications.
 
 ---
 
-## 10. Final Project Submission Guide (For a Perfect Grade)
+## 10. Final Project Submission & Automated Packager
 
-For the final Capstone grading submission, follow these steps to package the workspace:
+To prepare the Capstone submission zip file, run the helper script in the project root:
+```powershell
+python pack_project.py
+```
+This script validates that all required files (notebooks, serialization models, documentation, reports, and code modules) are present, and archives them into a zip file named `Capstone_Graded_Project.zip`, while automatically excluding intermediate database files, caches, and massive `.venv/` folders.
 
-1.  **Deactivate the Virtual Environment:**
-    ```powershell
-    deactivate
-    ```
-2.  **Archive the Directory:** 
-    Compress the project directory into a ZIP archive named:
-    `Capstone: Graded Project_[Your_Last_Name].zip`
-    
-    > [!IMPORTANT]
-    > **Excluding Virtual Environment Folders**
-    > Do **NOT** include the `.venv` folder in the ZIP archive. It contains thousands of library files totaling hundreds of megabytes, which will exceed file size limits for grading portals. The grading committee will create their own virtual environment and run `pip install -r requirements.txt`.
-    
-3.  **Include Files Checklist:** Make sure the following files are present in the final ZIP archive:
-    - `notebooks/Phase1_SQL.ipynb`
-    - `notebooks/Phase2_EDA.ipynb`
-    - `notebooks/Phase3_Modeling.ipynb`
-    - `notebooks/Phase4_Evaluation.ipynb`
-    - `app/main.py` & `app/schemas.py`
-    - `monitoring/validation.py` & `monitoring/drift_detection.py`
-    - `models/risk_model.pkl` & `models/claim_model.pkl`
-    - `data_outputs/model_table.csv` & `data_outputs/drift_summary.csv`
-    - `docs/Model_Card.md` & `docs/Governance_Compliance.md`
-    - `Healthcare_Insights_Report.docx`
-    - `requirements.txt`, `.env`, `.env.docker` & `build_features.py`
-    - `walkthrough.md` & `README.md`
+### Submission File Checklist
+The packager script automatically packages the following files:
+*   `notebooks/Phase1_SQL.ipynb`
+*   `notebooks/Phase2_EDA.ipynb`
+*   `notebooks/Phase3_Modeling.ipynb`
+*   `notebooks/Phase4_Evaluation.ipynb`
+*   `app/main.py` & `app/schemas.py`
+*   `app/static/index.html` (Interactive Dashboard)
+*   `monitoring/validation.py` & `monitoring/drift_detection.py`
+*   `models/risk_model.pkl` & `models/claim_model.pkl`
+*   `data_outputs/model_table.csv` & `data_outputs/drift_summary.csv`
+*   `docs/Model_Card.md` & `docs/Governance_Compliance.md`
+*   `Healthcare_Insights_Report.docx`
+*   `requirements.txt`, `.env.example` & `build_features.py`
+*   `walkthrough.md` & `README.md`
+*   `pack_project.py` (Self-packed)

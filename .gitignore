@@ -30,3 +30,5 @@ audit_logs.db
 # Reference Documents & Scratch Scripts
 reference_docs/
 scratch/
+
+*.zip
