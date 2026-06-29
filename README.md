@@ -279,38 +279,17 @@ For stakeholder presentations and Capstone grading reviews, the platform contain
    - **Live Tester Tab**: Forms to test `/predict/risk` and `/predict/claim` with visual progress bar confidence displays.
    - **Audit Logs Tab**: Direct view of the SQLite database logs.
    
-2. **[Executive Word Report](Healthcare_Insights_Report.docx):** 
-   A formal document compiling operational and financial recommendations. Compile by running:
-   ```powershell
-   python build_word_report.py
-   ```
+2. **[Dashboard Walkthrough Video](file:///d:/Projects/IITM/Capstone%20Project/dashboard_demo.mp4):**
+   A recorded video walkthrough showcasing the interactive dashboard in action (navigating clinical/financial tabs, running pre-audit claims simulations, checking audit logs, and testing real-time predictions).
+   
+   * **[Play Walkthrough Video (Local Link)](file:///d:/Projects/IITM/Capstone%20Project/dashboard_demo.mp4)** (Relative link: **[dashboard_demo.mp4](dashboard_demo.mp4)**)
+   
+   <video src="file:///d:/Projects/IITM/Capstone%20Project/dashboard_demo.mp4" width="100%" controls></video>
 
-3. **[Governance Guidelines](docs/Governance_Compliance.md)** & **[Model Card](docs/Model_Card.md):** 
+3. **[Executive Word Report](Healthcare_Insights_Report.docx):** 
+   A formal document compiling operational and financial recommendations.
+
+4. **[Governance Guidelines](docs/Governance_Compliance.md)** & **[Model Card](docs/Model_Card.md):** 
    Standardized logs of fairness checks and algorithm specifications.
 
----
 
-## 10. Final Project Submission & Automated Packager
-
-To prepare the Capstone submission zip file, run the helper script in the project root:
-```powershell
-python pack_project.py
-```
-This script validates that all required files (notebooks, serialization models, documentation, reports, and code modules) are present, and archives them into a zip file named `Capstone_Graded_Project.zip`, while automatically excluding intermediate database files, caches, and massive `.venv/` folders.
-
-### Submission File Checklist
-The packager script automatically packages the following files:
-*   `notebooks/Phase1_SQL.ipynb`
-*   `notebooks/Phase2_EDA.ipynb`
-*   `notebooks/Phase3_Modeling.ipynb`
-*   `notebooks/Phase4_Evaluation.ipynb`
-*   `app/main.py` & `app/schemas.py`
-*   `app/static/index.html` (Interactive Dashboard)
-*   `monitoring/validation.py` & `monitoring/drift_detection.py`
-*   `models/risk_model.pkl` & `models/claim_model.pkl`
-*   `data_outputs/model_table.csv` & `data_outputs/drift_summary.csv`
-*   `docs/Model_Card.md` & `docs/Governance_Compliance.md`
-*   `Healthcare_Insights_Report.docx`
-*   `requirements.txt`, `.env.example` & `build_features.py`
-*   `walkthrough.md` & `README.md`
-*   `pack_project.py` (Self-packed)
