@@ -24,7 +24,11 @@ checklist = [
     "walkthrough.md",
     "README.md",
     "build_features.py",
-    "pack_project.py"
+    "pack_project.py",
+    "Healthcare_Capstone_Presentation.pptx",
+    "generate_presentation.py",
+    "record_dashboard.py",
+    "dashboard_demo.mp4"
 ]
 
 zip_name = "Capstone_Graded_Project.zip"

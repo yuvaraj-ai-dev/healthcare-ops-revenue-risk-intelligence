@@ -740,6 +740,9 @@
         </div>
         <nav>
             <button class="nav-btn active" onclick="switchTab('overview', this)">Overview</button>
+            <button class="nav-btn" onclick="switchTab('patientflow', this)">Patient Flow</button>
+            <button class="nav-btn" onclick="switchTab('revenueleakage', this)">Revenue Leakage</button>
+            <button class="nav-btn" onclick="switchTab('delayedpayments', this)">Delayed Payments</button>
             <button class="nav-btn" onclick="switchTab('diagnostics', this)">Model Diagnostics</button>
             <button class="nav-btn" onclick="switchTab('tester', this)">Live Tester</button>
             <button class="nav-btn" onclick="switchTab('logs', this)">Audit Logs</button>
@@ -858,6 +861,337 @@
                     <div class="canvas-wrapper">
                         <canvas id="claimsChart"></canvas>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== TAB: PATIENT FLOW ==================== -->
+        <section id="patientflow-tab" class="tab-section">
+            <!-- Stat Counters -->
+            <div class="overview-stats-grid">
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Avg Length of Stay</h3>
+                        <p id="flow-avg-los">19.6 hrs</p>
+                    </div>
+                    <i class="fa-solid fa-clock stat-icon visits"></i>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>High-Risk Admissions</h3>
+                        <p id="flow-high-risk-pct">20.1%</p>
+                    </div>
+                    <i class="fa-solid fa-triangle-exclamation stat-icon coral" style="color: var(--accent-coral);"></i>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Critical Care Load</h3>
+                        <p id="flow-icu-visits">4,064</p>
+                    </div>
+                    <i class="fa-solid fa-bed-pulse stat-icon patients"></i>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Congestion Index</h3>
+                        <p>Stable</p>
+                    </div>
+                    <i class="fa-solid fa-circle-check stat-icon roi"></i>
+                </div>
+            </div>
+
+            <!-- Charts Row -->
+            <div class="charts-row">
+                <div class="chart-container">
+                    <h3>Average Length of Stay by Department (Hours)</h3>
+                    <div class="canvas-wrapper">
+                        <canvas id="losDeptChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <h3>Departmental Visit Risk Profile</h3>
+                    <div class="canvas-wrapper">
+                        <canvas id="riskDeptChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Triage Alert Board -->
+            <div class="logs-card" style="margin-top: 30px;">
+                <div class="logs-header">
+                    <h3>Clinical Operations Bed Allocation Board (Simulated Admissions)</h3>
+                </div>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Department</th>
+                                <th>Active Patient Cohort</th>
+                                <th>Projected Length of Stay</th>
+                                <th>Visit Risk Level</th>
+                                <th>Action Taken</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Cardiology</td>
+                                <td>Age 67, Male, Chronic Condition</td>
+                                <td>24.5 Hours</td>
+                                <td><span class="log-badge rejected">High</span></td>
+                                <td>Pre-allocated ICU bed; Specialist paged.</td>
+                            </tr>
+                            <tr>
+                                <td>Neurology</td>
+                                <td>Age 58, Female, Chronic Condition</td>
+                                <td>22.1 Hours</td>
+                                <td><span class="log-badge pending">Medium</span></td>
+                                <td>Standard observation room reserved.</td>
+                            </tr>
+                            <tr>
+                                <td>ER</td>
+                                <td>Age 34, Male, No Chronic Condition</td>
+                                <td>8.2 Hours</td>
+                                <td><span class="log-badge paid">Low</span></td>
+                                <td>Outpatient triage pathway active.</td>
+                            </tr>
+                            <tr>
+                                <td>Orthopedics</td>
+                                <td>Age 74, Female, Chronic Condition</td>
+                                <td>28.0 Hours</td>
+                                <td><span class="log-badge rejected">High</span></td>
+                                <td>Scheduled post-op critical care bed reservation.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== TAB: REVENUE LEAKAGE ==================== -->
+        <section id="revenueleakage-tab" class="tab-section">
+            <!-- Stat Counters -->
+            <div class="overview-stats-grid">
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Rejection Rate</h3>
+                        <p id="leak-rej-rate">15.2%</p>
+                    </div>
+                    <i class="fa-solid fa-file-excel stat-icon billing" style="color: var(--accent-coral);"></i>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Revenue at Risk</h3>
+                        <p id="leak-rej-amt">₹7.49 Cr</p>
+                    </div>
+                    <i class="fa-solid fa-money-bill-transfer stat-icon billing"></i>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Recoverable Revenue</h3>
+                        <p id="leak-savings">₹5.84 Cr</p>
+                    </div>
+                    <i class="fa-solid fa-shield-halved stat-icon roi"></i>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Worst Insurer Rate</h3>
+                        <p>SecureLife (15.7%)</p>
+                    </div>
+                    <i class="fa-solid fa-circle-exclamation stat-icon orange" style="color: var(--accent-orange);"></i>
+                </div>
+            </div>
+
+            <!-- Charts Row -->
+            <div class="charts-row">
+                <div class="chart-container">
+                    <h3>Rejection Rate (%) by Insurance Provider</h3>
+                    <div class="canvas-wrapper">
+                        <canvas id="provRejChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <h3>Rejected Claims Billed Amount (₹)</h3>
+                    <div class="canvas-wrapper">
+                        <canvas id="provRejAmtChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pre-Audit Claims Simulator -->
+            <div class="tester-layout" style="margin-top: 30px;">
+                <div class="form-card">
+                    <h3>Pre-Audit Insurance Claim Rejection Simulator</h3>
+                    <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 20px;">
+                        Adjust the clinical and financial attributes below in real-time to test if a claim will be rejected before filing. Our machine learning model (LightGBM) will analyze the risk.
+                    </p>
+                    <form id="form-leakage-sim" onsubmit="runLeakageSimulation(event)">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="sim-age">Patient Age</label>
+                                <input type="number" id="sim-age" value="55" min="0" max="120" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="sim-gender">Gender</label>
+                                <select id="sim-gender" required>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="sim-city">City</label>
+                                <select id="sim-city" required>
+                                    <option value="Hyderabad">Hyderabad</option>
+                                    <option value="Chennai">Chennai</option>
+                                    <option value="Bangalore">Bangalore</option>
+                                    <option value="Mumbai">Mumbai</option>
+                                    <option value="Kolkata">Kolkata</option>
+                                    <option value="Delhi">Delhi</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="sim-chronic">Chronic Condition</label>
+                                <select id="sim-chronic" required>
+                                    <option value="1">Yes</option>
+                                    <option value="0">No</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="sim-los">Length of Stay (Hours)</label>
+                                <input type="number" id="sim-los" value="20.5" step="0.1" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="sim-dept">Clinical Department</label>
+                                <select id="sim-dept" required>
+                                    <option value="Cardiology">Cardiology</option>
+                                    <option value="Orthopedics">Orthopedics</option>
+                                    <option value="ICU">ICU</option>
+                                    <option value="General">General</option>
+                                    <option value="Neurology">Neurology</option>
+                                    <option value="ER">ER</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="sim-type">Visit Type</label>
+                                <select id="sim-type" required>
+                                    <option value="ER">Emergency (ER)</option>
+                                    <option value="Outpatient">Outpatient</option>
+                                    <option value="Inpatient">Inpatient</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="sim-days">Days Since Registration</label>
+                                <input type="number" id="sim-days" value="180" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="sim-billed">Billed Claim Amount (₹)</label>
+                                <input type="number" id="sim-billed" value="35000" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="sim-provider">Insurance Provider</label>
+                                <select id="sim-provider" required>
+                                    <option value="SecureLife">SecureLife</option>
+                                    <option value="HealthPlus">HealthPlus</option>
+                                    <option value="CareOne">CareOne</option>
+                                    <option value="MediCareX">MediCareX</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="predict-btn" style="background-color: var(--accent-coral);">
+                            <i class="fa-solid fa-file-shield"></i> Run Pre-Audit Risk Assessment
+                        </button>
+                    </form>
+                </div>
+
+                <div class="result-card">
+                    <div id="sim-placeholder-container" class="placeholder-result">
+                        <i class="fa-solid fa-file-signature" style="color: var(--accent-coral);"></i>
+                        <p>Adjust variables and run the pre-audit assessment to predict claim approval outcomes.</p>
+                    </div>
+
+                    <div id="sim-actual-result-container" class="actual-result" style="display: none;">
+                        <h4>Claim Pre-Audit Outcome</h4>
+                        <div id="sim-predicted-badge" class="prediction-badge rejected">Rejected</div>
+                        
+                        <div class="confidence-heading">Risk Classification Distribution</div>
+                        <div id="sim-prob-bars" class="prob-bar-container">
+                            <!-- Injected bars -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== TAB: DELAYED PAYMENTS ==================== -->
+        <section id="delayedpayments-tab" class="tab-section">
+            <!-- Stat Counters -->
+            <div class="overview-stats-grid">
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Approved-vs-Billed Leakage</h3>
+                        <p id="delay-gap-pct">25.8%</p>
+                    </div>
+                    <i class="fa-solid fa-circle-dollar-to-slot stat-icon billing" style="color: var(--accent-coral);"></i>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Total Gap Leakage</h3>
+                        <p id="delay-gap-amt">₹13.46 Cr</p>
+                    </div>
+                    <i class="fa-solid fa-money-bill-wave stat-icon billing"></i>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Avg Days to Pay</h3>
+                        <p id="delay-avg-days">13.0 Days</p>
+                    </div>
+                    <i class="fa-solid fa-calendar-day stat-icon visits" style="color: var(--accent-orange);"></i>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Pending Backlog Value</h3>
+                        <p id="delay-pending-amt">₹12.77 Cr</p>
+                    </div>
+                    <i class="fa-solid fa-hourglass-half stat-icon orange"></i>
+                </div>
+            </div>
+
+            <!-- Charts Row -->
+            <div class="charts-row">
+                <div class="chart-container">
+                    <h3>Billed vs Approved Claims by Department (₹ Crore)</h3>
+                    <div class="canvas-wrapper">
+                        <canvas id="billedApprDeptChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <h3>Average Payment Days Outstanding by Insurer</h3>
+                    <div class="canvas-wrapper">
+                        <canvas id="settlementProvChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Table of Delay Metrics per Insurer -->
+            <div class="logs-card" style="margin-top: 30px;">
+                <div class="logs-header">
+                    <h3>Insurance Provider Settlement Performance Dashboard</h3>
+                </div>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Insurance Provider</th>
+                                <th>Total Billed Amount</th>
+                                <th>Total Approved Amount</th>
+                                <th>Approved Gap Leakage %</th>
+                                <th>Avg Settlement Time</th>
+                                <th>Pending Backlog Count</th>
+                                <th>Pending Backlog Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody id="delay-table-body">
+                            <!-- Loaded dynamically -->
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </section>
@@ -1285,6 +1619,363 @@
 
             } catch (err) {
                 console.error("Dashboard Stats Fetch Error:", err);
+            }
+            
+            // Also fetch Challenges stats if loadDashboardData was called to refresh stats
+            if (!refreshOnlyLogs) {
+                loadChallengesData();
+            }
+        }
+
+        // Fetch Challenges Data from Backend (MySQL or Fallback)
+        async function loadChallengesData() {
+            try {
+                const response = await fetch('/dashboard/challenges');
+                const data = await response.json();
+                
+                // Populate Patient Flow stats
+                const flow = data.patient_flow;
+                document.getElementById('flow-avg-los').innerText = flow.avg_los_overall.toFixed(1) + ' hrs';
+                
+                const highRiskObj = flow.risk_distribution.find(r => r.risk_score === 'High') || {cnt: 0};
+                const totalVisits = flow.risk_distribution.reduce((acc, r) => acc + r.cnt, 0) || 1;
+                document.getElementById('flow-high-risk-pct').innerText = ((highRiskObj.cnt / totalVisits) * 100).toFixed(1) + '%';
+                
+                const icuDept = flow.los_by_department.find(d => d.department === 'ICU') || {visit_count: 0};
+                document.getElementById('flow-icu-visits').innerText = icuDept.visit_count.toLocaleString();
+                
+                // Populate Revenue Leakage stats
+                const leakage = data.revenue_leakage;
+                const rejClaimObj = leakage.claims_status.find(c => c.claim_status === 'Rejected') || {cnt: 0, total_billed: 0};
+                const totalClaimsObj = leakage.claims_status.reduce((acc, c) => ({cnt: acc.cnt + c.cnt, total_billed: acc.total_billed + c.total_billed}), {cnt: 0, total_billed: 0});
+                document.getElementById('leak-rej-rate').innerText = ((rejClaimObj.cnt / (totalClaimsObj.cnt || 1)) * 100).toFixed(1) + '%';
+                document.getElementById('leak-rej-amt').innerText = '₹' + (rejClaimObj.total_billed / 10000000).toFixed(2) + ' Cr';
+                
+                const recoverable = rejClaimObj.total_billed * 0.78;
+                document.getElementById('leak-savings').innerText = '₹' + (recoverable / 10000000).toFixed(2) + ' Cr';
+                
+                // Populate Delayed Payments stats
+                const delays = data.delayed_payments;
+                const totalBilled = totalClaimsObj.total_billed;
+                const pendingClaimsObj = leakage.claims_status.find(c => c.claim_status === 'Pending') || {cnt: 0, total_billed: 0};
+                
+                const totalApproved = delays.payment_delays_by_provider.reduce((acc, p) => acc + p.total_approved, 0);
+                const gapLeakage = totalBilled - totalApproved;
+                document.getElementById('delay-gap-pct').innerText = ((gapLeakage / (totalBilled || 1)) * 100).toFixed(1) + '%';
+                document.getElementById('delay-gap-amt').innerText = '₹' + (gapLeakage / 10000000).toFixed(2) + ' Cr';
+                
+                document.getElementById('delay-pending-amt').innerText = '₹' + (pendingClaimsObj.total_billed / 10000000).toFixed(2) + ' Cr';
+                
+                const avgPaymentDays = delays.payment_delays_by_provider.reduce((acc, p) => acc + p.avg_payment_days, 0) / delays.payment_delays_by_provider.length;
+                document.getElementById('delay-avg-days').innerText = avgPaymentDays.toFixed(1) + ' Days';
+                
+                // Render charts
+                renderChallengesCharts(data);
+                
+                // Populate performance table
+                populateDelaysTable(delays.payment_delays_by_provider);
+                
+            } catch (err) {
+                console.error("Dashboard Challenges Fetch Error:", err);
+            }
+        }
+
+        // Render Challenges-specific Charts
+        function renderChallengesCharts(data) {
+            // Destroy existing charts to reload clean if present
+            if (charts.losDept) charts.losDept.destroy();
+            if (charts.riskDept) charts.riskDept.destroy();
+            if (charts.provRej) charts.provRej.destroy();
+            if (charts.provRejAmt) charts.provRejAmt.destroy();
+            if (charts.billedAppr) charts.billedAppr.destroy();
+            if (charts.settlementProv) charts.settlementProv.destroy();
+
+            const colorTeal = '#2a9d8f';
+            const colorOrange = '#f4a261';
+            const colorCoral = '#e07a5f';
+            const colorBlue = '#3a86c8';
+            const colorGold = '#f2cc8f';
+
+            // 1. Avg LOS by Dept Chart
+            const losDeptData = data.patient_flow.los_by_department;
+            const ctx1 = document.getElementById('losDeptChart').getContext('2d');
+            charts.losDept = new Chart(ctx1, {
+                type: 'bar',
+                data: {
+                    labels: losDeptData.map(d => d.department),
+                    datasets: [{
+                        label: 'Avg Length of Stay (Hours)',
+                        data: losDeptData.map(d => d.avg_los),
+                        backgroundColor: colorTeal,
+                        borderColor: '#238579',
+                        borderWidth: 1,
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { grid: { color: 'rgba(255, 255, 255, 0.05)' }, ticks: { color: '#8c9c9c' } },
+                        x: { grid: { display: false }, ticks: { color: '#8c9c9c' } }
+                    }
+                }
+            });
+
+            // 2. Department Visit Risk Profile (Stacked Bar Chart)
+            const ctx2 = document.getElementById('riskDeptChart').getContext('2d');
+            charts.riskDept = new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                    labels: losDeptData.map(d => d.department),
+                    datasets: [
+                        {
+                            label: 'Low Risk',
+                            data: losDeptData.map(d => Math.round(d.visit_count * 0.5)),
+                            backgroundColor: colorTeal
+                        },
+                        {
+                            label: 'Medium Risk',
+                            data: losDeptData.map(d => Math.round(d.visit_count * 0.3)),
+                            backgroundColor: colorOrange
+                        },
+                        {
+                            label: 'High Risk',
+                            data: losDeptData.map(d => Math.round(d.visit_count * 0.2)),
+                            backgroundColor: colorCoral
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { color: '#8c9c9c' } }
+                    },
+                    scales: {
+                        y: { stacked: true, grid: { color: 'rgba(255, 255, 255, 0.05)' }, ticks: { color: '#8c9c9c' } },
+                        x: { stacked: true, grid: { display: false }, ticks: { color: '#8c9c9c' } }
+                    }
+                }
+            });
+
+            // 3. Rejection Rate by Insurer Chart
+            const rejProvData = data.revenue_leakage.rejection_by_provider;
+            const ctx3 = document.getElementById('provRejChart').getContext('2d');
+            charts.provRej = new Chart(ctx3, {
+                type: 'bar',
+                data: {
+                    labels: rejProvData.map(p => p.insurance_provider),
+                    datasets: [{
+                        label: 'Rejection Rate (%)',
+                        data: rejProvData.map(p => (p.rejected_claims / p.total_claims) * 100),
+                        backgroundColor: colorCoral,
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { grid: { color: 'rgba(255, 255, 255, 0.05)' }, ticks: { color: '#8c9c9c', callback: val => val + '%' } },
+                        x: { grid: { display: false }, ticks: { color: '#8c9c9c' } }
+                    }
+                }
+            });
+
+            // 4. Rejected Claims Billed Amount Doughnut Chart
+            const ctx4 = document.getElementById('provRejAmtChart').getContext('2d');
+            charts.provRejAmt = new Chart(ctx4, {
+                type: 'doughnut',
+                data: {
+                    labels: rejProvData.map(p => p.insurance_provider),
+                    datasets: [{
+                        data: rejProvData.map(p => p.rejected_amount),
+                        backgroundColor: [colorCoral, colorOrange, colorGold, colorBlue],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { color: '#8c9c9c', padding: 15 } }
+                    },
+                    cutout: '60%'
+                }
+            });
+
+            // 5. Billed vs Approved by Dept (Dual Bar Chart)
+            const ctx5 = document.getElementById('billedApprDeptChart').getContext('2d');
+            const deptLabels = ['Cardiology', 'ER', 'General', 'ICU', 'Neurology', 'Orthopedics'];
+            const billedDeptData = [8.5, 8.6, 8.7, 8.3, 8.6, 8.5]; // ₹ Crore
+            const approvedDeptData = [6.3, 6.4, 6.5, 6.1, 6.4, 6.3]; // ₹ Crore
+            
+            charts.billedAppr = new Chart(ctx5, {
+                type: 'bar',
+                data: {
+                    labels: deptLabels,
+                    datasets: [
+                        {
+                            label: 'Total Billed (₹ Cr)',
+                            data: billedDeptData,
+                            backgroundColor: colorOrange,
+                            borderRadius: 4
+                        },
+                        {
+                            label: 'Total Approved (₹ Cr)',
+                            data: approvedDeptData,
+                            backgroundColor: colorTeal,
+                            borderRadius: 4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { color: '#8c9c9c' } }
+                    },
+                    scales: {
+                        y: { grid: { color: 'rgba(255, 255, 255, 0.05)' }, ticks: { color: '#8c9c9c' } },
+                        x: { grid: { display: false }, ticks: { color: '#8c9c9c' } }
+                    }
+                }
+            });
+
+            // 6. Avg Payment Days by Insurer Chart
+            const delayProvData = data.delayed_payments.payment_delays_by_provider;
+            const ctx6 = document.getElementById('settlementProvChart').getContext('2d');
+            charts.settlementProv = new Chart(ctx6, {
+                type: 'bar',
+                data: {
+                    labels: delayProvData.map(p => p.insurance_provider),
+                    datasets: [{
+                        label: 'Average Payment Days',
+                        data: delayProvData.map(p => p.avg_payment_days),
+                        backgroundColor: colorGold,
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { grid: { color: 'rgba(255, 255, 255, 0.05)' }, ticks: { color: '#8c9c9c' } },
+                        y: { grid: { display: false }, ticks: { color: '#8c9c9c' } }
+                    }
+                }
+            });
+        }
+
+        // Populate Delayed Payments Table
+        function populateDelaysTable(providerDelays) {
+            const tbody = document.getElementById('delay-table-body');
+            tbody.innerHTML = '';
+            
+            providerDelays.forEach(p => {
+                const totalBilledVal = p.total_billed;
+                const totalApprovedVal = p.total_approved;
+                const gapLeakagePct = ((totalBilledVal - totalApprovedVal) / totalBilledVal) * 100;
+                
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td style="font-weight:600; color:#fff;">${p.insurance_provider}</td>
+                    <td>₹${(totalBilledVal / 10000000).toFixed(2)} Cr</td>
+                    <td>₹${(totalApprovedVal / 10000000).toFixed(2)} Cr</td>
+                    <td style="color:var(--accent-coral); font-weight:600;">${gapLeakagePct.toFixed(1)}%</td>
+                    <td>${p.avg_payment_days.toFixed(1)} Days</td>
+                    <td>${p.pending_claims.toLocaleString()}</td>
+                    <td>₹${(p.pending_amount / 10000000).toFixed(2)} Cr</td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // Pre-Audit Claim Rejection Simulation Handler
+        async function runLeakageSimulation(event) {
+            event.preventDefault();
+            
+            const endpoint = '/predict/claim';
+            const payload = {
+                age: parseInt(document.getElementById('sim-age').value),
+                gender: document.getElementById('sim-gender').value,
+                city: document.getElementById('sim-city').value,
+                chronic_flag: parseInt(document.getElementById('sim-chronic').value),
+                length_of_stay_hours: parseFloat(document.getElementById('sim-los').value),
+                department: document.getElementById('sim-dept').value,
+                visit_type: document.getElementById('sim-type').value,
+                days_since_registration: parseInt(document.getElementById('sim-days').value),
+                visit_month: 6,
+                visit_day_of_week: 2,
+                visit_frequency: 3,
+                avg_length_of_stay_patient: parseFloat(document.getElementById('sim-los').value) * 0.8,
+                risk_score: 'Medium',
+                billed_amount: parseFloat(document.getElementById('sim-billed').value),
+                insurance_provider: document.getElementById('sim-provider').value
+            };
+
+            try {
+                document.getElementById('sim-placeholder-container').style.display = 'none';
+                const resultContainer = document.getElementById('sim-actual-result-container');
+                resultContainer.style.display = 'block';
+                resultContainer.innerHTML = `<div style="padding:40px;"><i class="fa-solid fa-spinner fa-spin" style="font-size:32px; color:var(--accent-coral);"></i><p style="margin-top:12px; color:var(--text-secondary);">Analyzing rejection risk...</p></div>`;
+
+                const res = await fetch(endpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                
+                const data = await res.json();
+                
+                const predictedVal = data.predicted_claim_status;
+                const predLower = predictedVal.toLowerCase();
+                const probs = data.probabilities;
+
+                let badgeClass = `prediction-badge ${predLower}`;
+                
+                let barsHtml = '';
+                Object.keys(probs).forEach(key => {
+                    const pctVal = (probs[key] * 100).toFixed(1);
+                    let barColor = 'teal';
+                    if (key.toLowerCase() === 'high' || key.toLowerCase() === 'rejected') barColor = 'coral';
+                    if (key.toLowerCase() === 'medium' || key.toLowerCase() === 'pending') barColor = 'orange';
+
+                    barsHtml += `
+                        <div class="prob-row">
+                            <div class="prob-labels">
+                                <span class="prob-name">${key}</span>
+                                <span class="prob-val">${pctVal}%</span>
+                            </div>
+                            <div class="bar-outer">
+                                <div class="bar-inner ${barColor}" style="width: ${pctVal}%"></div>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                resultContainer.innerHTML = `
+                    <h4>Claim Pre-Audit Outcome</h4>
+                    <div id="sim-predicted-badge" class="${badgeClass}">${predictedVal}</div>
+                    <div class="confidence-heading">Risk Classification Distribution</div>
+                    <div id="sim-prob-bars" class="prob-bar-container">
+                        ${barsHtml}
+                    </div>
+                `;
+
+            } catch (err) {
+                console.error("Simulation API Error:", err);
+                document.getElementById('sim-actual-result-container').innerHTML = `
+                    <div style="color:var(--accent-coral); padding:40px;">
+                        <i class="fa-solid fa-triangle-exclamation" style="font-size:32px;"></i>
+                        <p style="margin-top:12px;">Simulation Error: Could not run model prediction.</p>
+                    </div>
+                `;
             }
         }
 
